@@ -18,7 +18,7 @@ class TestStringMethods():
     def test_input_happycase(self):
         assert is_it_a_fruit("apple") == True
         assert is_it_a_fruit("pear") == True
-        assert is_it_a_fruit("bananna") == True
+        assert is_it_a_fruit("banana") == True
         assert is_it_a_fruit("grape") == True
     
     # Int input test

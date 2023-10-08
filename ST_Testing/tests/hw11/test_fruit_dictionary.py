@@ -1,8 +1,35 @@
 import pytest
 from ST_Testing.projects.hw11.fruit_dictionary import get_formal_name, get_formal_name_updated
+@pytest.mark.parametrize('test_input, expected_output', 
+                        [
+                             ('apple', 'Malus domestica'),
+                             ('banana', 'Musa acuminata'),
+                             ('orange', 'Citrus × sinensis'),
+                             ('strawberry', 'Fragaria × ananassa'),
+                             ('grape', 'Vitis vinifera'),
+                             ('pineapple', 'Ananas comosus'),
+                             ('mango', 'Mangifera indica'),
+                             ('blueberry', 'Vaccinium corymbosum'),
+                             ('peach', 'Prunus persica'),
+                             ('watermelon', 'Citrullus lanatus'),
+                             ('cherry', 'Prunus avium'),
+                             ('pear', 'Pyrus'),
+                             ('plum', 'Prunus domestica'),
+                             ('raspberry', 'Rubus idaeus'),
+                             ('kiwi', 'Actinidia deliciosa'),
+                             ('lemon', 'Citrus limon'),
+                             ('avocado', 'Persea americana'),
+                             ('pomegranate', 'Punica granatum'),
+                             ('cranberry', 'Vaccinium macrocarpon'),
+                             ('grapefruit', 'Citrus × paradisi')
+                        ]
+)
 
+def test_happpycase_input_updated(test_input, expected_output):
+        result = get_formal_name_updated(test_input)
+        assert result == expected_output
 
-class TestFruitDictionary():    
+class TestFruitDictionary():
     
     def test_happycase_input(self):
         assert get_formal_name('apple') == "Malus domestica"
