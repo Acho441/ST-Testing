@@ -1,6 +1,4 @@
-
 def is_it_a_fruit(fruit_candidate):
-    
     fruits = ['apple', 'pear', 'banana', 'grape']
 
     if fruit_candidate in fruits:
@@ -8,10 +6,10 @@ def is_it_a_fruit(fruit_candidate):
     else:
         return False
 
+
 """Here I am testing calling the method a couple times to make
    sure there arent any program breaking errors"""
 
 print(is_it_a_fruit('pear'))
 print(is_it_a_fruit([]))
 print(is_it_a_fruit('Pear'))
-
