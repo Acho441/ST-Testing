@@ -1,9 +1,15 @@
 import pytest
 from ST_Testing.projects.hw12.compute_complexity_hw12 import compute_complexity
-@pytest.mark.parametrize('test_input', ['ap&p#le=', 'b@a#n@@an_a', 'a-v#o&c++ado'])
+
+
+@pytest.mark.parametrize('test_input', ['ap&p#le=', 'b@a#n@@an_a',
+                         'a-v#o&c++ado'])
 @pytest.mark.parametrize('test_wrong_input', ['av', 'a`'])
 @pytest.mark.parametrize('test_partially_wrong_input', ['av@^!k', 'a`kcs*@'])
-def test_input(test_input, test_wrong_input, test_partially_wrong_input):
+@pytest.mark.parametrize('test_non_string',
+                         [1, [], 1.2])
+def test_input(test_input, test_wrong_input,
+               test_partially_wrong_input, test_non_string):
     """
     Testable Things:
     -test that what is returned is a float
@@ -28,3 +34,7 @@ def test_input(test_input, test_wrong_input, test_partially_wrong_input):
 
     # Check that the partially wrong input return a complexity higher then 0
     assert partially_wrong_result > 0
+
+    # Check that when you enter a non string an error is raised
+    with pytest.raises(IndexError):
+        compute_complexity(test_non_string)

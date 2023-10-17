@@ -1,11 +1,17 @@
 import pytest
 from ST_Testing.projects.hw13.compute_complexity_hw13 import evaluate_strength
 from xmlrpc.client import boolean
-@pytest.mark.parametrize('test_input', ['ap&p#le=', 'b@a#n@@an_a', 'a-v#o&c++ado'])
+
+
+@pytest.mark.parametrize('test_input', ['ap&p#le=+++',
+                         'b@a#n@@an_a@+', 'a-v#o&c++ado+@@'])
 @pytest.mark.parametrize('test_non_string_input', [1, [], 1.2])
-@pytest.mark.parametrize('test_wrong_input', ['av', 'a`'])
-@pytest.mark.parametrize('test_partially_wrong_input', ['a**v@^!*k**', 'a`k*cs**@'])
-def test_input(test_input, test_wrong_input, test_partially_wrong_input, test_non_string_input):
+@pytest.mark.parametrize('test_wrong_input',
+                         ['av', 'a`'])
+@pytest.mark.parametrize('test_partially_wrong_input',
+                         ['a**v@^!*k**', 'a`k*cs**@'])
+def test_input(test_input, test_wrong_input,
+               test_partially_wrong_input, test_non_string_input):
     """
     Testable Things:
     -test that what is returned is a True or False

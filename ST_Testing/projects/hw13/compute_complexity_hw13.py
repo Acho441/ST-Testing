@@ -23,11 +23,11 @@ def compute_complexity(data):
 
 def evaluate_strength(password):
     """
-        For the supplied `password`, evaluate whether the password is strong enough
-        to be acceptable.
+    For the supplied `password`, evaluate whether the password is strong enough
+    to be acceptable.
 
-        :param password: str, attempted password
-        :return: bool, True if acceptable, else False
+    :param password: str, attempted password
+    :return: bool, True if acceptable, else False
     """
     if not isinstance(password, str):
         msg = f"Error: Attempted password '{password}' must be a string!."
