@@ -1,8 +1,7 @@
 import pytest
 from ST_Testing.projects.hw11.fruit_dictionary import (get_formal_name,
                                                        get_formal_name_updated)
-
-
+"""Test all of the parameters"""
 @pytest.mark.parametrize('test_input, expected_output',
                         [('apple', 'Malus domestica'),
                          ('banana', 'Musa acuminata'),
@@ -26,9 +25,15 @@ from ST_Testing.projects.hw11.fruit_dictionary import (get_formal_name,
                          ('grapefruit', 'Citrus × paradisi')])
 def test_happpycase_input_parameterize_updated(test_input, expected_output):
     result = get_formal_name_updated(test_input)
-    assert result is expected_output
+    assert result == expected_output
 
+"""
+Testable things:
+Test various input types such as:
+strings, ints, floats, lists
 
+Test the spelling for the strings
+"""
 class TestFruitDictionary():
 
     def test_happycase_input(self):
