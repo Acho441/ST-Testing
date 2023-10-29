@@ -1,5 +1,6 @@
 import pytest
-from ST_Testing.projects.hw14.password_utilities import evaluate_strength, compute_complexity
+from ST_Testing.projects.hw14.password_utilities import \
+    evaluate_strength, compute_complexity
 
 
 """
