@@ -32,11 +32,11 @@ testdata5: contains list
 testdata6: contains floats
 """
 
-testdata1 = ['b%^^^', 'h%^@@']
+testdata1 = ['b^^^^', 'h^^@@']
 testdata2 = ['av', 'a`']
 testdata3 = ['av~^!k', 'a`kcs*~']
 testdata4 = [1, 4, 9, 15]
-testdata5 = [[]]
+testdata5 = [[1]]
 testdata6 = [1.4, 2.5]
 
 
@@ -97,9 +97,11 @@ def test_strong_string(client, strong_string_input: str):
 
 
 # test that the live api can handle strong string passwords
-def test_live_strong_string(client):
-    url = "http://127.0.0.1:5000/get_strength?password=a^^&k*^$*n^&!"
-    res = requests.get(f"{url}/get_strength?password=")
+@pytest.mark.parametrize('strong_string_input_live', testdata1)
+def test_live_strong_string(strong_string_input_live):
+    params = {'password': {strong_string_input_live}}
+    url = "http://127.0.0.1:5000/get_strength"
+    res = requests.get(url, params=params)
     assert str(res) == "<Response [200]>"
     result = res.json()
     assert result.get('strength') == 'good'
@@ -120,9 +122,11 @@ def test_incorrect__complexifiers_string(client, partially_bad_string_input):
 
 # test that the live api given a password with incorrect complexifiers
 # gets bad strength
-def test_live_wrong_complexifier_string(client):
-    url = "http://127.0.0.1:5000/get_strength?password=a((!k))(n())!"
-    res = requests.get(f"{url}/get_strength?password=")
+@pytest.mark.parametrize('partially_bad_string_input_live', testdata3)
+def test_live_wrong_complexifier_string(partially_bad_string_input_live):
+    params = {'password': {partially_bad_string_input_live}}
+    url = "http://127.0.0.1:5000/get_strength"
+    res = requests.get(url, params=params)
     assert str(res) == "<Response [200]>"
     result = res.json()
     assert result.get('strength') == 'bad'
@@ -193,11 +197,37 @@ def test_expect_bad_float(client, float_input: float):
     assert data.get('strength') == 'bad'
 
 
-# test that the live api given a ints, lists, floats
+# test that the live api given ints
 # gets bad strength
-def test_live_no_strength_non_string(client):
-    url = "http://127.0.0.1:5000/get_strength?password=12[]3.4"
-    res = requests.get(f"{url}/get_strength?password=")
+@pytest.mark.parametrize('int_live_inputs', testdata4)
+def test_live_no_strength_int(int_live_inputs):
+    params = {'password': {int_live_inputs}}
+    url = "http://127.0.0.1:5000/get_strength"
+    res = requests.get(url, params=params)
+    assert str(res) == "<Response [200]>"
+    result = res.json()
+    assert result.get('strength') == 'bad'
+
+
+# test that the live api given a list
+# gets bad strength
+@pytest.mark.parametrize('list_live_inputs', testdata5)
+def test_live_no_strength_list(list_live_inputs):
+    params = {'password': list_live_inputs}
+    url = "http://127.0.0.1:5000/get_strength"
+    res = requests.get(url, params=params)
+    assert str(res) == "<Response [200]>"
+    result = res.json()
+    assert result.get('strength') == 'bad'
+
+
+# test that the live api given floats
+# gets bad strength
+@pytest.mark.parametrize('float_live_inputs', testdata6)
+def test_live_no_strength_float(float_live_inputs):
+    params = {'password': {float_live_inputs}}
+    url = "http://127.0.0.1:5000/get_strength"
+    res = requests.get(url, params=params)
     assert str(res) == "<Response [200]>"
     result = res.json()
     assert result.get('strength') == 'bad'
