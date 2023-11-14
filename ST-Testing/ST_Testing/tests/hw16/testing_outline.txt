@@ -1,0 +1,43 @@
+Input
+    Good in strength
+        Returns good for password strength
+            Testable strong passwords:
+                @@@@@@@
+                &&&&&&&
+                a&&&b%%
+    Bad in strength
+        Returns bad for password strength
+            Testable bad passwords:
+                abcjsd
+                kjasdn
+                ,,,,,,
+                abdhs&
+    Testable strength
+        Testable passwords to see if they are strong or not
+            12
+            []
+            1.4
+            ~
+
+Website interactions testable things
+    Will the website work if multiple websites are running at the same time?
+    Does the button work?
+    Is there a response?
+
+How to test:
+    To test these you will need to have the web.py running, the api.py, and to use
+    the website interface, and get the strength of the test data
+
+Results of the tests:
+    The passwords that were complex returned good for strength
+    The passwords that were not complex enoough returned bad for strength
+    The passwords that used complexifiers that are not recognized gave bad strength
+    You can have multiple website pages up, and they work fine
+    The button works properly
+    There is always a response
+
+Things That are worth considering testing but dont know how:
+    Can it handle foreign languages like Mandarin
+    Stress testing it if somebody puts a extremely long password
+    
+
